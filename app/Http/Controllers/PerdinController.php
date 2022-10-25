@@ -16,7 +16,9 @@ class PerdinController extends Controller
 
     public function index()
     {
-        $perdin = Perdin::all();
+
+        $user_id = auth()->user()->id;
+        $perdin = Perdin::where('user_id', $user_id)->get();
         $data = [
             'tittle' => 'index',
             'f_perdin' => new Perdin(),
@@ -38,7 +40,7 @@ class PerdinController extends Controller
             'perdin' => $perdin,
             'count_p' => $count_p
         ];
-        return view('devisisdm.konfirmasi_perdin', $data);
+        return view('sdm.konfirmasi_perdin', $data);
     }
 
     public function detail_konfirmasi_perdin($id)
@@ -51,7 +53,7 @@ class PerdinController extends Controller
             'f_perdin' => new Perdin(),
             'perdin' => $perdin
         ];
-        return view('devisisdm.detail_konfirmasi_perdin', $data);
+        return view('sdm.detail_konfirmasi_perdin', $data);
     }
 
     public function approve_perdin($id){
@@ -62,9 +64,10 @@ class PerdinController extends Controller
             'konfirmasi' =>  'y'
         ]);
 
-        return redirect('devisisdm.konfirmasi_perdin')->with('sukses', 'Perdin Di Approved !');
+        return redirect('history_perdin')->with('approved', 'Perdin Di Approved !');
 
     }
+    
     public function reject_perdin($id){
 
         $perdin = Perdin::whereid($id)->first();
@@ -73,8 +76,9 @@ class PerdinController extends Controller
             'konfirmasi' =>  'n'
         ]);
 
-        return redirect('devisisdm.konfirmasi_perdin')->with('sukses', 'Perdin Di Approved !');
+        return redirect('history_perdin')->with('rejected', 'Perdin Di Reject !');
     }
+
     public function history_perdin()
     {
    
@@ -89,7 +93,7 @@ class PerdinController extends Controller
             'count_y' => $count_y,
             'count_n' => $count_n
         ];
-        return view('devisisdm.history_konfirmasi_perdin', $data);
+        return view('sdm.history_konfirmasi_perdin', $data);
     }
 
     /**
@@ -116,9 +120,7 @@ class PerdinController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'nama_perdin' => 'required|max:128',
             'kota_asal_id' => 'required',
             'kota_tujuan_id' => 'required',
             'tgl_mulai' => 'required',
@@ -140,29 +142,15 @@ class PerdinController extends Controller
   
         //menghitung jarak
         $jarak_km = $f_perdin->jarak($kota_asal->lat,$kota_asal->long,$kota_tujuan->lat,$kota_tujuan->long);
-    
-       if ($kota_tujuan->luar_negeri !== 1) {
-           if ($jarak_km<60) {
-              $uangsaku = 0;
-           }else{
-               if ($kota_asal->provinsi_id == $kota_tujuan->provinsi_id){
-                   $uangsaku = 200000;
-               }else{
-                   if ($kota_asal->pulau_id == $kota_tujuan->pulau_id) {
-                       $uangsaku = 250000;
-                   }else{
-                       $uangsaku = 300000;
-                   }
-               }
-           }        
-       }else{
-            $uangsaku = 50 ;
-       }
 
+        //ambil session user_id
+        $user_id = auth()->user()->id;
 
-       
-       $perdin = Perdin::create([
-        'nama_perdin' => $request->nama_perdin,
+        //menghitung ungsaku
+        $uangsaku = $f_perdin->uangsaku($jarak_km,$kota_asal,$kota_tujuan);
+        
+        Perdin::create([
+        'user_id' =>  $user_id,
         'kota_asal_id' => $request->kota_asal_id,
         'kota_tujuan_id' => $request->kota_tujuan_id,
         'tgl_berangkat' => $request->tgl_mulai,
@@ -173,7 +161,7 @@ class PerdinController extends Controller
         'konfirmasi' => 'p',
     ]);
 
-    dd('berhasil');
+    return redirect('pegawai')->with('sukses', 'Permohonan Perdin Berhasil Ditambah !');
                 
 
 

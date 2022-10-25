@@ -15,7 +15,7 @@ class CreatePerdinsTable extends Migration
     {
         Schema::create('perdins', function (Blueprint $table) {
             $table->id();
-            $table->char('nama_perdin', 128);
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade') ->onDelete('cascade');
             $table->foreignId('kota_asal_id')->constrained('kotas')->onUpdate('cascade') ->onDelete('cascade');
             $table->foreignId('kota_tujuan_id')->constrained('kotas')->onUpdate('cascade') ->onDelete('cascade');
             $table->date('tgl_berangkat');

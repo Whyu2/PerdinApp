@@ -31,13 +31,13 @@
                                     <form action="{{route('update.user',$user->id)}}" method="post">
                                         @csrf
                                         <div class="mb-2">
-                                            <label for="exampleInputEmail1" class="form-label">Username</label>
-                                            <input type="text" name="username" placeholder="masukkan username" 
-                                            class="form-control @error('username') is-invalid @enderror" 
-                                            value="{{ old('username', $user->username) }}"
+                                            <label for="exampleInputEmail1" class="form-label">Nama</label>
+                                            <input type="text" name="nama" 
+                                            class="form-control @error('nama') is-invalid @enderror" 
+                                            value="{{ old('nama', $user->nama) }}"
                                             required
                                             >
-                                            @error('username')
+                                            @error('nama')
                                                 <div class="invalid-feedback"> {{ $message }}</div>
                                             @enderror
                                         </div>
@@ -52,9 +52,9 @@
                                               <label class="form-check-label" for="inlineRadio2">Pegawai</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                              <input type="radio" name="role" id="inlineRadio2" value="devisisdm" 
+                                              <input type="radio" name="role" id="inlineRadio2" value="sdm" 
                                               class="form-check-input  @error('role') is-invalid @enderror" 
-                                              required {{ $user->role == "devisisdm" ? 'checked' : '' }}
+                                              required {{ $user->role == "sdm" ? 'checked' : '' }}
                                               >
                                               <label class="form-check-label" for="inlineRadio2">Devisi SDM</label>
                                           

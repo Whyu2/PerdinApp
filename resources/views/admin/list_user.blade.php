@@ -44,7 +44,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Kategori</th>
+                                                <th>Nama</th>
                                                 <th>Role</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -55,7 +55,7 @@
                                             <tr>
                                                 <td>{{$number}}</td>
                                                 <?php $number++; ?>
-                                                <td>{{$u->username}}</td>
+                                                <td>{{$u->nama}}</td>
                                                 <td>{{$u->role}}</td>
                                                 <th>
                                                   <a href="{{route('edit.user',$u->id)}}" class="btn btn-primary btnku " ><i class="fas fa-edit"></i></a>

@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::where('role', 'pegawai')->orWhere('role', 'devisisdm')->get();
+        $users = User::where('role', 'pegawai')->orWhere('role', 'sdm')->get();
         
         $data = [
             'tittle' => 'index',
@@ -46,13 +46,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required|max:128',
+            'username' => 'required|max:128|unique:users,username',
+            'nama' => 'required|max:128',
             'pass' => 'required|max:128',
         ]);
 
-        $user = User::create([
+            User::create([
             'username' => $request->username,
             'password' => bcrypt($request->pass),
+            'nama' => $request->nama,
             'role' => $request->role,
         ]);
         
@@ -97,12 +99,12 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'username' => 'required|max:128',
+            'nama' => 'required|max:128',
         ]);
         $user = User::whereid($id)->first();
 
         $user->update([
-            'username' => $request->username,
+            'nama' => $request->nama,
             'role' => $request->role,
         ]);
 

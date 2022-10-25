@@ -30,17 +30,7 @@
                                 <div class="card-body">
                                     <form action="{{route('store.perdin')}}" method="post">
                                         @csrf
-                                        <div class="mb-2">
-                                            <label for="exampleInputEmail1" class="form-label">Nama Perdin</label>
-                                            <input type="text" name="nama_perdin" placeholder="masukkan nama perdin" 
-                                            class="form-control @error('nama_perdin') is-invalid @enderror" 
-                                            value="{{ old('nama_perdin') }}"
-                                            required
-                                            >
-                                            @error('nama_perdin')
-                                                <div class="invalid-feedback"> {{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                     
                                         <div class="mb-2">
                                             <label for="exampleInputEmail1" class="form-label">Kota</label>
                                             <div class="row">

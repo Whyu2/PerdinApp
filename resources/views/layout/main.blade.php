@@ -34,7 +34,18 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" 
+            @if (auth()->user()->role == "admin")
+            href="/admin"
+            @endif
+            @if (auth()->user()->role == "sdm")
+            href="/sdm"
+            @endif
+            @if (auth()->user()->role == "pegawai")
+            href="/pegawai"
+            @endif
+ 
+            ">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-car"></i>
                 </div>
@@ -56,7 +67,7 @@
             <!-- Nav Item - Charts -->
             @if (auth()->user()->role == "admin")
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Manajemen User</span></a>
                
@@ -64,14 +75,14 @@
             @endif
             @if (auth()->user()->role == "pegawai")
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/pegawai">
                     <i class="fas fa-fw fa-car"></i>
                     <span>Permohonan Perdin</span></a>
             </li>
             @endif
-            @if (auth()->user()->role == "devisisdm")
+            @if (auth()->user()->role == "sdm")
             <li class="nav-item">
-                <a class="nav-link" href="/devisisdm">
+                <a class="nav-link" href="/sdm">
                     <i class="fas fa-fw fa-city"></i>
                     <span>Master Kota</span></a>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -134,7 +145,7 @@
 
                         <!-- Nav Item - Messages -->
                      
-                        <span class=" p-2">{{auth()->user()->username}}</span>
+                        <span class=" p-2">{{auth()->user()->nama}} ({{auth()->user()->role}})</span>
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -163,7 +174,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; PerdinApp 2022</span>
                     </div>
                 </div>
             </footer>

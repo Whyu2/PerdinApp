@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->char('username', 128);
             $table->char('password', 128);
-            $table->enum('role', ['admin','pegawai', 'devisisdm']);
+            $table->char('nama', 128);
+            $table->enum('role', ['admin','pegawai', 'sdm']);
             $table->timestamps();
         });
     }

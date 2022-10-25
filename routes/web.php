@@ -32,8 +32,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/edit_user/{id}', [UserController::class, 'update'])->name('update.user');
         Route::delete('delete_user', [UserController::class, 'destroy'])->name('user.delete');
     });
-    Route::middleware(['auth','cekrole:devisisdm'])->group(function () {
-        Route::get('/devisisdm', [KotaController::class, 'index']);
+    Route::middleware(['auth','cekrole:sdm'])->group(function () {
+        Route::get('/sdm', [KotaController::class, 'index']);
         Route::get('/tambah_kota', [KotaController::class, 'create'])->name('tambah.kota');
         Route::post('/tambah_kota', [KotaController::class, 'store'])->name('store.kota');
         Route::get('/edit_kota/{id}', [KotaController::class, 'edit'])->name('edit.kota');

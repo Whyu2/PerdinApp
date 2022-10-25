@@ -46,7 +46,7 @@
                                             <select class="form-control" name="provinsi_id" aria-label="Default select example" required>
                                              
                                                 @foreach ($provinsi as $p)
-                                                <option value="{{$p->id}}" {{($p->id == $kota->id) ? "selected" : ""}}>{{$p->nama_provinsi}}</option>
+                                                <option value="{{$p->id}}" {{($p->id == $kota->provinsi_id) ? "selected" : ""}}>{{$p->nama_provinsi}}</option>
                                                 @endforeach
                                               </select>
                                         </div>
@@ -54,7 +54,7 @@
                                             <label for="exampleInputEmail1" class="form-label">Pulau</label>
                                             <select class="form-control" name="pulau_id" aria-label="Default select example" required>
                                                 @foreach ($pulau as $pu)
-                                                <option value="{{$pu->id}}" {{($pu->id == $kota->id) ? "selected" : ""}}>{{$pu->nama_pulau}}</option>
+                                                <option value="{{$pu->id}}" {{($pu->id == $kota->pulau_id) ? "selected" : ""}}>{{$pu->nama_pulau}}</option>
                                                 @endforeach
                                               </select>
                                         </div>

@@ -42,6 +42,17 @@
                                             @enderror
                                         </div>
                                         <div class="mb-2">
+                                            <label for="exampleInputEmail1" class="form-label">Nama</label>
+                                            <input type="text" name="nama" placeholder="masukkan nama" 
+                                            class="form-control @error('nama') is-invalid @enderror" 
+                                            value="{{ old('nama') }}"
+                                            required
+                                            >
+                                            @error('nama')
+                                                <div class="invalid-feedback"> {{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-2">
                                             <label for="exampleInputEmail1" class="form-label">Password</label>
                                             <input type="text" name="pass" placeholder="masukkan password" 
                                             class="form-control @error('pass') is-invalid @enderror" 
@@ -62,7 +73,7 @@
                                               <label class="form-check-label" for="inlineRadio2">Pegawai</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                              <input type="radio" name="role" id="inlineRadio2" value="devisisdm" 
+                                              <input type="radio" name="role" id="inlineRadio2" value="sdm" 
                                               class="form-check-input  @error('role') is-invalid @enderror" 
                                               required
                                               >

@@ -42,8 +42,8 @@
                                         $lebihkm =  $f_perdin->lebihkm($jarak_km);
                                         ?>
                                         <div class="mb-2">
-                                            <label for="exampleInputEmail1" class="form-label">Nama Perdin</label>
-                                            <input type="text" name="nama_perdin" class="form-control" value="{{$perdin->nama_perdin}}" readonly
+                                            <label for="exampleInputEmail1" class="form-label">Nama</label>
+                                            <input type="text" name="nama_perdin" class="form-control" value="{{$perdin->user->nama}}" readonly
                                             >
                                         </div>
                                         <div class="mb-2">

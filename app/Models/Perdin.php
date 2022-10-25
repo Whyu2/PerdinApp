@@ -9,7 +9,7 @@ class Perdin extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama_perdin',
+        'user_id',
         'kota_asal_id',
         'kota_tujuan_id',
         'tgl_berangkat',
@@ -20,6 +20,11 @@ class Perdin extends Model
         'konfirmasi',
     ];
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function kota($id=null)
     {
         $result = Kota::whereid($id)->first();
@@ -55,6 +60,27 @@ class Perdin extends Model
     return $result;
   }
 
+  public function uangsaku($jarak_km,$kota_asal,$kota_tujuan){
+    if ($kota_tujuan->luar_negeri !== 1) {
+      if ($jarak_km<60) {
+         $result = 0;
+      }else{
+          if ($kota_asal->provinsi_id == $kota_tujuan->provinsi_id){
+              $result = 200000;
+          }else{
+              if ($kota_asal->pulau_id == $kota_tujuan->pulau_id) {
+                  $result = 250000;
+              }else{
+                  $result = 300000;
+              }
+          }
+      }        
+  }else{
+       $result = 50 ;
+  }
+
+    return $result;
+  }
   public function total_uang($uang, $durasi){
     $result = $uang * $durasi;
      return $result;
@@ -68,5 +94,7 @@ class Perdin extends Model
     }
     return $result;
   }
+
+  
 
 }

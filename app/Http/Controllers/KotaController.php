@@ -6,9 +6,9 @@ use App\Models\User;
 use App\Models\Kota;
 use App\Models\Provinsi;
 use App\Models\Pulau;
+use App\Models\Perdin;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
 
 class KotaController extends Controller
 {
@@ -24,7 +24,7 @@ class KotaController extends Controller
             'tittle' => 'index',
             'kota' => $kota
         ];
-        return view('devisisdm.list_kota', $data);
+        return view('sdm.list_kota', $data);
     }
 
     /**
@@ -41,7 +41,7 @@ class KotaController extends Controller
             'provinsi' => $provinsi,
             'pulau' => $pulau
         ];
-        return view('devisisdm.add_kota', $data);
+        return view('sdm.add_kota', $data);
     }
 
     /**
@@ -53,7 +53,7 @@ class KotaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kota' => 'required|max:128',
+            'nama_kota' => 'required|max:128|unique:kotas,nama_kota',
             'provinsi_id' => 'required',
             'pulau_id' => 'required',
             'long' => 'required',
@@ -61,7 +61,7 @@ class KotaController extends Controller
             'luar_negeri' => 'required'
         ]);
 
-        $kota = Kota::create([
+            Kota::create([
             'nama_kota' => $request->nama_kota,
             'provinsi_id' => $request->provinsi_id,
             'pulau_id' => $request->pulau_id,
@@ -71,7 +71,7 @@ class KotaController extends Controller
         
         ]);
         
-        return redirect('devisisdm')->with('sukses', 'Data User, Berhasil Ditambah!');
+        return redirect('sdm')->with('sukses', 'Data User, Berhasil Ditambah!');
     }
 
     /**
@@ -102,7 +102,7 @@ class KotaController extends Controller
             'provinsi' => $provinsi,
             'pulau' => $pulau
         ];
-        return view('devisisdm.edit_kota', $data);
+        return view('sdm.edit_kota', $data);
     }
 
     /**
@@ -115,7 +115,7 @@ class KotaController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'nama_kota' => 'required|max:128',
+            'nama_kota' => 'required|max:128|unique:kotas,nama_kota',
             'provinsi_id' => 'required',
             'pulau_id' => 'required',
             'long' => 'required',
@@ -134,7 +134,7 @@ class KotaController extends Controller
             'long' =>  $request->long,
         ]);
 
-        return redirect('devisisdm')->with('sukses', 'Data Kota, Berhasil Diubah!');
+        return redirect('sdm')->with('sukses', 'Data Kota, Berhasil Diubah!');
     }
 
     /**
@@ -146,10 +146,18 @@ class KotaController extends Controller
     public function destroy(Request $request)
     {
         $id= $request->id_kota;
+        //validasi ketika data digunakan
+        $perdin = Perdin::where(function ($query) use ($id) {
+            $query->where('kota_asal_id', '=', $id)
+                  ->orWhere('kota_tujuan_id', '=', $id);
+        })->get();
 
-        Kota::whereId($id)->delete();
-
-        return redirect('devisisdm')->with('sukses_delete', 'Data Kota, Berhasil Dihapus!');
+        if ($perdin) {
+            return redirect('sdm')->with('sukses_delete', 'Data Kota Gagal Dihapus Karena Masih Digunakan !');
+        } else {
+            Kota::whereId($id)->delete();
+            return redirect('sdm')->with('sukses_delete', 'Data Kota, Berhasil Dihapus!');
+        }
 
     }
 }

@@ -15,21 +15,30 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
             ['username' => 'admin',
+            'nama' => 'admin',
             'password' => bcrypt('1234'),
             'role' => 'admin'],
             ['username' => 'pegawai',
+            'nama' => 'Eko',
             'password' => bcrypt('1234'),
             'role' => 'pegawai'],
-            ['username' => 'devisisdm',
+            ['username' => 'pegawai2',
+            'nama' => 'Agus',
             'password' => bcrypt('1234'),
-            'role' => 'devisisdm']
+            'role' => 'pegawai'],
+            ['username' => 'sdm',
+            'nama' => 'Ali',
+            'password' => bcrypt('1234'),
+            'role' => 'sdm'],
            ]);
            DB::table('pulaus')->insert([
+            ['nama_pulau' => 'Luar Negeri'],
             ['nama_pulau' => 'Jawa'],
             ['nama_pulau' => 'Kalimantan'],
             ['nama_pulau' => 'Sumatra']
            ]);
            DB::table('provinsis')->insert([
+            ['nama_provinsi' => 'Luar Negeri'],
             ['nama_provinsi' => 'Jawa Timur'],
             ['nama_provinsi' => 'Jawa Tengah'],
             ['nama_provinsi' => 'Jawa Barat'],
@@ -38,15 +47,15 @@ class DatabaseSeeder extends Seeder
 
            DB::table('kotas')->insert([
             ['nama_kota' => 'Surabaya',
-            'pulau_id' => 1,
-            'provinsi_id' => 1,
+            'pulau_id' => 2,
+            'provinsi_id' => 2,
             'luar_negeri' => 0,
             'lat' => '-7.250445',
             'long' => '112.768845',
            ],  
            ['nama_kota' => 'Semarang',
-           'pulau_id' => 1,
-           'provinsi_id' => 2,
+           'pulau_id' => 2,
+           'provinsi_id' => 3,
            'luar_negeri' => 0,
            'lat' => '-6.966667',
            'long' => '110.416664',
