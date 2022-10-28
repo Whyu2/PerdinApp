@@ -21,7 +21,7 @@ class KotaController extends Controller
     {
         $kota = Kota::all();
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'Master Kota',
             'kota' => $kota
         ];
         return view('sdm.list_kota', $data);
@@ -37,7 +37,7 @@ class KotaController extends Controller
         $provinsi = Provinsi::all();
         $pulau = Pulau::all();
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'Tambah Kota',
             'provinsi' => $provinsi,
             'pulau' => $pulau
         ];
@@ -56,8 +56,8 @@ class KotaController extends Controller
             'nama_kota' => 'required|max:128|unique:kotas,nama_kota',
             'provinsi_id' => 'required',
             'pulau_id' => 'required',
-            'long' => 'required',
-            'lat' => 'required',
+            'long' => 'required|regex:/^-?\d{1,3}\.\d{6,}$/',
+            'lat' => 'required|regex:/^-?\d{1,3}\.\d{6,}$/',
             'luar_negeri' => 'required'
         ]);
 
@@ -68,7 +68,6 @@ class KotaController extends Controller
             'luar_negeri' => $request->luar_negeri,
             'lat' =>  $request->lat,
             'long' =>  $request->long,
-        
         ]);
         
         return redirect('sdm')->with('sukses', 'Data User, Berhasil Ditambah!');
@@ -115,7 +114,7 @@ class KotaController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'nama_kota' => 'required|max:128|unique:kotas,nama_kota',
+            'nama_kota' => 'required|max:128',
             'provinsi_id' => 'required',
             'pulau_id' => 'required',
             'long' => 'required',
@@ -152,7 +151,7 @@ class KotaController extends Controller
                   ->orWhere('kota_tujuan_id', '=', $id);
         })->get();
 
-        if ($perdin) {
+        if (!$perdin) {
             return redirect('sdm')->with('sukses_delete', 'Data Kota Gagal Dihapus Karena Masih Digunakan !');
         } else {
             Kota::whereId($id)->delete();

@@ -16,7 +16,7 @@ class Perdin extends Model
         'tgl_pulang',
         'durasi',
         'uangsaku',
-        'deskripsi',
+        'keterangan',
         'konfirmasi',
     ];
 
@@ -62,7 +62,7 @@ class Perdin extends Model
 
   public function uangsaku($jarak_km,$kota_asal,$kota_tujuan){
     if ($kota_tujuan->luar_negeri !== 1) {
-      if ($jarak_km<60) {
+      if ($jarak_km<60 || $jarak_km == "NAN" ) {
          $result = 0;
       }else{
           if ($kota_asal->provinsi_id == $kota_tujuan->provinsi_id){
@@ -87,7 +87,8 @@ class Perdin extends Model
    }
 
   public function lebihkm($jarak){
-    if($jarak<60){
+    if($jarak<60||$jarak=="NAN")  
+    {
         $result = "(jarak < 60km)";
     }else{
         $result = "(jarak > 60km)";

@@ -84,8 +84,8 @@
     columns : [
         { width : '1px' },
         { width : '75px' },
-        { width : '100px' },
-        { width : '125px' },        
+        { width : '150px' },
+        { width : '100px' },        
         { width : '50px' },
         { width : '50px' }        
     ] 

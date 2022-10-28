@@ -67,7 +67,7 @@
                                                
                                                 <td>{{$kota_asal->nama_kota}} <i class="fas fa-arrow-right"></i> {{$kota_tujuan->nama_kota}}</td>
                                                 <td>  {{tanggal_bulan($p->tgl_berangkat)}} - {{tanggal_bulan_tahun($p->tgl_pulang)}} ({{$durasi}} Hari)</span></td>
-                                                <td >{{$p->deskripsi}}</td>
+                                                <td >{{$p->keterangan}}</td>
                                                 <td>{!!$status!!}</td>
                                               </tr>
                                           @endforeach

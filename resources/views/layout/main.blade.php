@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Selamat Datang</title>
+    <title>{{$tittle}}</title>
  
    
     <!-- Custom fonts for this template-->

@@ -20,7 +20,7 @@ class PerdinController extends Controller
         $user_id = auth()->user()->id;
         $perdin = Perdin::where('user_id', $user_id)->get();
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'Perdin',
             'f_perdin' => new Perdin(),
             'perdin' => $perdin
         ];
@@ -35,7 +35,7 @@ class PerdinController extends Controller
         $count_p = Perdin::where('konfirmasi', 'p')->count();
    
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'Konfirmasi Perdin',
             'f_perdin' => new Perdin(),
             'perdin' => $perdin,
             'count_p' => $count_p
@@ -48,7 +48,7 @@ class PerdinController extends Controller
    
         $perdin = Perdin::whereid($id)->first();
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'Detail Perdin',
             'f_kota' => new Kota(),
             'f_perdin' => new Perdin(),
             'perdin' => $perdin
@@ -87,7 +87,7 @@ class PerdinController extends Controller
         $count_n = Perdin::where('konfirmasi', 'n')->count();
    
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'History Perdin',
             'f_perdin' => new Perdin(),
             'perdin' => $perdin,
             'count_y' => $count_y,
@@ -106,7 +106,7 @@ class PerdinController extends Controller
         $kota = Kota::all();
    
         $data = [
-            'tittle' => 'index',
+            'tittle' => 'Kota',
             'kota' => $kota,
         ];
         return view('pegawai.add_perdin', $data);
@@ -125,7 +125,7 @@ class PerdinController extends Controller
             'kota_tujuan_id' => 'required',
             'tgl_mulai' => 'required',
             'tgl_selesai' => 'required',
-            'deskripsi' => 'required'
+            'keterangan' => 'required'
         ]);
 
 
@@ -157,7 +157,7 @@ class PerdinController extends Controller
         'tgl_pulang' => $request->tgl_selesai,
         'durasi' =>  $durasi,
         'uangsaku' =>  $uangsaku,
-        'deskripsi' => $request->deskripsi,
+        'keterangan' => $request->keterangan,
         'konfirmasi' => 'p',
     ]);
 
@@ -207,7 +207,8 @@ class PerdinController extends Controller
      * @param  \App\Models\Perdin  $perdin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perdin $perdin)
+    public function 
+    troy(Perdin $perdin)
     {
         //
     }

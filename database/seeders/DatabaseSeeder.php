@@ -33,29 +33,48 @@ class DatabaseSeeder extends Seeder
            ]);
            DB::table('pulaus')->insert([
             ['nama_pulau' => 'Luar Negeri'],
+            ['nama_pulau' => 'Sumatra'],
             ['nama_pulau' => 'Jawa'],
-            ['nama_pulau' => 'Kalimantan'],
-            ['nama_pulau' => 'Sumatra']
+            ['nama_pulau' => 'Kalimantan']
+
            ]);
            DB::table('provinsis')->insert([
             ['nama_provinsi' => 'Luar Negeri'],
-            ['nama_provinsi' => 'Jawa Timur'],
-            ['nama_provinsi' => 'Jawa Tengah'],
+            ['nama_provinsi' => 'Sumatra Utara'],
+            ['nama_provinsi' => 'Sumatra Barat'],
+            ['nama_provinsi' => 'Riau'],
+            ['nama_provinsi' => 'Kepalauan Riau'],
+            ['nama_provinsi' => 'Jambi'],
+            ['nama_provinsi' => 'Bengkulu'],
+            ['nama_provinsi' => 'Sumatra Selatan'],
+            ['nama_provinsi' => 'Kepuluan Bangka Belitung'],
+            ['nama_provinsi' => 'Lampung'],
+            ['nama_provinsi' => 'Banten'],
+            ['nama_provinsi' => 'DKI Jakarta'],
             ['nama_provinsi' => 'Jawa Barat'],
-            ['nama_provinsi' => 'Sumatra Utara']
+            ['nama_provinsi' => 'Jawa Tengah'],
+            ['nama_provinsi' => 'Daerah Istimewa Yogyakarta'],
+            ['nama_provinsi' => 'Jawa Timur'],
+            ['nama_provinsi' => 'Bali'],
+            ['nama_provinsi' => 'Nusa Tenggara Barat'],
+            ['nama_provinsi' => 'Nusa Tenggara Timur'],
+            ['nama_provinsi' => 'Kalimantan Utara'],
+            ['nama_provinsi' => 'Kalimantan Timur'],
+            ['nama_provinsi' => 'Kalimantan Barat'],
+            ['nama_provinsi' => 'Kalimantan Selatan'],
            ]);
 
            DB::table('kotas')->insert([
             ['nama_kota' => 'Surabaya',
-            'pulau_id' => 2,
-            'provinsi_id' => 2,
+            'pulau_id' => 3,
+            'provinsi_id' => 16,
             'luar_negeri' => 0,
             'lat' => '-7.250445',
             'long' => '112.768845',
            ],  
            ['nama_kota' => 'Semarang',
-           'pulau_id' => 2,
-           'provinsi_id' => 3,
+           'pulau_id' => 3,
+           'provinsi_id' => 13,
            'luar_negeri' => 0,
            'lat' => '-6.966667',
            'long' => '110.416664',

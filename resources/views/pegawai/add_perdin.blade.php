@@ -99,7 +99,7 @@
                                       
                                         <div class="mb-2">
                                             <label for="exampleInputEmail1" class="form-label">Keterangan </label>
-                                            <textarea type="text" name="deskripsi"  
+                                            <textarea type="text" name="keterangan"  
                                             class="form-control @error('keterangan') is-invalid @enderror" 
                                             value="{{ old('deskripsi') }}" 
                                             required rows="5" 

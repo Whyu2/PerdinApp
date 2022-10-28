@@ -22,8 +22,8 @@ class CreatePerdinsTable extends Migration
             $table->date('tgl_pulang');
             $table->integer('durasi');
             $table->integer('uangsaku');
-            $table->string('deskripsi');
-            $table->char('konfirmasi', 8);
+            $table->string('keterangan');
+            $table->enum('konfirmasi', ['y','p', 'n']);
             $table->timestamps();
         });
     }

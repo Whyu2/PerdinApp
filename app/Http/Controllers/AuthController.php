@@ -34,7 +34,7 @@ class AuthController extends Controller
             }
         }
         
-    return back()->with('loginError','Username & Password Tidak Sesuai!');
+    return back()->with('gagal_login','Username & Password Tidak Sesuai!');
     }
     
     public function logout(){

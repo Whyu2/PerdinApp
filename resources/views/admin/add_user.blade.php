@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="mb-2">
                                             <label for="exampleInputEmail1" class="form-label">Password</label>
-                                            <input type="text" name="pass" placeholder="masukkan password" 
+                                            <input type="password" name="pass" placeholder="masukkan password" 
                                             class="form-control @error('pass') is-invalid @enderror" 
                                             value="{{ old('pass') }}"
                                             required

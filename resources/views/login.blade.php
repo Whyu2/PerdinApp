@@ -43,6 +43,11 @@
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang !</h1>
                                     </div>
                                     <form action="/login" method="post">
+                                        @if(session()->has('gagal_login'))
+                                        <div class="alert alert-danger allert-dismissible fade show mt-1" role="alert">
+                                          {{session('gagal_login')}}
+                                        </div>
+                                        @endif
                                         @csrf 
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username"

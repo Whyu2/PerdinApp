@@ -100,14 +100,14 @@
                                       
                                         <div class="mb-2">
                                             <label for="exampleInputEmail1" class="form-label">Keterangan </label>
-                                            <textarea type="text" name="deskripsi"  
+                                            <textarea type="text" name="keterangan"  
                                             class="form-control"
                                         
                                             required rows="5"  readonly
-                                            >   {{$perdin->deskripsi}}
+                                            >   {{$perdin->keterangan}}
                                           </textarea>
-                                          @error('deskripsi')
-                                          <div class="invalid-feedback"> {{ $message }}</div>
+                                          @error('keterangan')
+                                          <div class="invalid-feedback"> {{ $keterangan }}</div>
                                          @enderror
                                         </div>
                                         <table class="table table-striped">
@@ -122,7 +122,13 @@
                                               <tr>
                                     
                                                 <td class="text-primary text-center">{{$durasi}} Hari</td>
-                                                <td class="text-primary text-center">{{$jarak_km}} KM<br>
+                                                <td class="text-primary text-center">
+                                        
+                                                    @if($jarak_km=="NAN")  
+                                                   
+                                                    @endif
+                                                    {{$jarak_km}} KM
+                                                    <br>
                                                     @if ($kota_tujuan->luar_negeri == 0)
                                                     <span class="text-secondary">{{formatIDR($perdin->uangsaku)}} / Hari</span> 
                                                     @endif
